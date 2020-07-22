@@ -41,7 +41,7 @@ extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath)
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = "Name:\(taskArray[indexPath.row].name) Deadline:\(taskArray[indexPath.row].deadline) Point:\(taskArray[indexPath.row].point)"
+        cell.textLabel?.text = "Name:\(taskArray[indexPath.row].name)\nDeadline:\(taskArray[indexPath.row].deadline)\nPoint:\(taskArray[indexPath.row].point)"
         return cell
     }
 }

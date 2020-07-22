@@ -37,6 +37,10 @@ class AddViewController: UIViewController {
                 taskArray.append(TaskModel(name:  name , type: type, deadline: deadline, point: Int(point) ?? 0))
             }
         }
+        nameTextField.text = ""
+        typeTextField.text = ""
+        deadlineTextField.text = ""
+        pointTextField.text = ""
     }
     
     @IBAction func listTasksButtonPressed(_ sender: Any) {
