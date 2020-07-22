@@ -20,12 +20,19 @@ class AddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     
     @IBAction func addTaskButtonPressed(_ sender: UIButton) {
         if let date = deadlineTextField.text , let name = nameTextField.text , let type = typeTextField.text, let point = pointTextField.text {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-mm-yyyy HH:mm"
+            dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
             if let deadline = dateFormatter.date(from: date){
                 taskArray.append(TaskModel(name:  name , type: type, deadline: deadline, point: Int(point) ?? 0))
             }
