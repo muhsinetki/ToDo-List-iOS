@@ -32,7 +32,7 @@ class AddViewController: UIViewController {
     @IBAction func addTaskButtonPressed(_ sender: UIButton) {
         if let date = deadlineTextField.text , let name = nameTextField.text , let type = typeTextField.text, let point = pointTextField.text {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             if let deadline = dateFormatter.date(from: date){
                 taskArray.append(TaskModel(name:  name , type: type, deadline: deadline, point: Int(point) ?? 0))
             }
