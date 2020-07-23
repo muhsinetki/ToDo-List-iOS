@@ -28,7 +28,6 @@ class AddViewController: UIViewController {
         view.endEditing(true)
     }
     
-    
     @IBAction func addTaskButtonPressed(_ sender: UIButton) {
         if let date = deadlineTextField.text , let name = nameTextField.text , let type = typeTextField.text, let point = pointTextField.text {
             let dateFormatter = DateFormatter()
