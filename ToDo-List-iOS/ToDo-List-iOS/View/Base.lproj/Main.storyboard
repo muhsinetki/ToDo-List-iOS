@@ -102,9 +102,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yhd-zm-h1n">
-                                <rect key="frame" x="0.0" y="88" width="414" height="663"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yhd-zm-h1n">
+                                <rect key="frame" x="0.0" y="88" width="414" height="664"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" id="nir-eU-sdi">
@@ -136,17 +135,37 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2D-tb-B4U">
+                                <rect key="frame" x="157" y="762" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="gEe-0I-FvM"/>
+                                    <constraint firstAttribute="height" constant="30" id="lrB-bI-1bl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Delete"/>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="RDb-3o-kMp" eventType="touchUpInside" id="tBv-s1-1pb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="H2D-tb-B4U" firstAttribute="centerX" secondItem="GIH-0H-bsN" secondAttribute="centerX" id="9Ge-Qk-Oim"/>
+                            <constraint firstItem="yhd-zm-h1n" firstAttribute="trailing" secondItem="gjy-AA-JSu" secondAttribute="trailing" id="Am5-VR-PW8"/>
+                            <constraint firstItem="H2D-tb-B4U" firstAttribute="top" secondItem="yhd-zm-h1n" secondAttribute="bottom" constant="10" id="GXH-nC-xK7"/>
+                            <constraint firstItem="fqK-Ix-cSt" firstAttribute="top" secondItem="H2D-tb-B4U" secondAttribute="bottom" constant="20" id="afK-09-1Et"/>
+                            <constraint firstItem="H2D-tb-B4U" firstAttribute="top" secondItem="yhd-zm-h1n" secondAttribute="bottom" constant="10" id="bLV-rT-m6o"/>
                             <constraint firstItem="gjy-AA-JSu" firstAttribute="bottom" secondItem="fqK-Ix-cSt" secondAttribute="bottom" constant="20" id="cGp-hN-uWr"/>
                             <constraint firstItem="fqK-Ix-cSt" firstAttribute="leading" secondItem="gjy-AA-JSu" secondAttribute="leading" id="gVa-5E-8h1"/>
+                            <constraint firstItem="yhd-zm-h1n" firstAttribute="leading" secondItem="gjy-AA-JSu" secondAttribute="leading" id="lVj-uf-Fe3"/>
                             <constraint firstItem="gjy-AA-JSu" firstAttribute="trailing" secondItem="fqK-Ix-cSt" secondAttribute="trailing" id="pnD-Re-pA9"/>
+                            <constraint firstItem="yhd-zm-h1n" firstAttribute="top" secondItem="gjy-AA-JSu" secondAttribute="top" id="uNL-KV-XvE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gjy-AA-JSu"/>
                     </view>
                     <navigationItem key="navigationItem" id="OVr-yG-ryr"/>
                     <connections>
+                        <outlet property="deleteButton" destination="H2D-tb-B4U" id="bEG-bC-puA"/>
                         <outlet property="sortByDeadlineButton" destination="Xfq-mM-u9U" id="S7m-EM-Xk7"/>
                         <outlet property="sortByPointButton" destination="j6q-ir-OlT" id="MNy-iq-p3k"/>
                         <outlet property="tableView" destination="yhd-zm-h1n" id="Md4-oX-UKm"/>

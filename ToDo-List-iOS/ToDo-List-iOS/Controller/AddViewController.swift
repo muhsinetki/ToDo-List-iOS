@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddViewController: UIViewController {
     
@@ -16,10 +17,13 @@ class AddViewController: UIViewController {
     @IBOutlet weak var pointTextField: UITextField!
     @IBOutlet weak var addTaskButton: UIButton!
     @IBOutlet weak var listTasksButton: UIButton!
-    var taskArray: [TaskModel] = []
+    
+    var taskArray = [Item]()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadItems()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -44,7 +48,16 @@ class AddViewController: UIViewController {
         
         if let deadline = dateFormatter.date(from: date) {
             if name != "" && type != "" && point != ""{
-                taskArray.append(TaskModel(name:  name , type: type, deadline: deadline, point: Int(point) ?? 0))
+                
+                let newItem = Item(context: context)
+                newItem.deadline = deadline
+                newItem.name = name
+                newItem.point = Int16(point) ?? 0
+                newItem.type = type
+                
+                self.taskArray.append(newItem)
+                self.saveItems()
+                
             }else {
                 self.present(alertController, animated: true, completion: nil)
             }
@@ -60,8 +73,26 @@ class AddViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToList" {
             if let destinationVC = segue.destination as? ListViewController {
+                loadItems()
                 destinationVC.taskArray = self.taskArray
             }
+        }
+    }
+    
+    func saveItems() {
+        do {
+            try context.save()
+        } catch  {
+            print("Error decoding item array, \(error)")
+        }
+    }
+    
+    func loadItems()  {
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        do {
+            taskArray = try context.fetch(request)
+        } catch  {
+            print("Error fetching data from context \(error)")
         }
     }
 }
