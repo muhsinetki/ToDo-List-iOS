@@ -28,23 +28,20 @@ class AddViewController: UIViewController {
         view.endEditing(true)
     }
     
-     @IBAction func addTaskButtonPressed(_ sender: UIButton) {
+    @IBAction func addTaskButtonPressed(_ sender: UIButton) {
         if let date = deadlineTextField.text , let name = nameTextField.text , let type = typeTextField.text, let point = pointTextField.text {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             if let deadline = dateFormatter.date(from: date){
                 taskArray.append(TaskModel(name:  name , type: type, deadline: deadline, point: Int(point) ?? 0))
-                warningLabel.text = "Task has been successfully added."
             }else {
-                warningLabel.text = "Warning! Task failed to add to list"
+                let alertController = UIAlertController(title: title, message: "There was an error adding the task to the list.", preferredStyle:UIAlertController.Style.alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
+                { action -> Void in
+                })
+                self.present(alertController, animated: true, completion: nil)
             }
-        }else {
-            warningLabel.text = "Warning! Task failed to add to list"
         }
-        nameTextField.text = ""
-        typeTextField.text = ""
-        deadlineTextField.text = ""
-        pointTextField.text = ""
     }
     
     @IBAction func listTasksButtonPressed(_ sender: Any) {
