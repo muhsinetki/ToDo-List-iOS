@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddViewController: UIViewController {
     
@@ -16,18 +17,14 @@ class AddViewController: UIViewController {
     @IBOutlet weak var pointTextField: UITextField!
     @IBOutlet weak var addTaskButton: UIButton!
     @IBOutlet weak var listTasksButton: UIButton!
-    var taskArray: [TaskModel] = []
+    
+    var taskArray = [TaskItem]()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        view.addGestureRecognizer(tap)
     }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
+
     @IBAction func addTaskButtonPressed(_ sender: UIButton) {
         let date = deadlineTextField.text ?? ""
         let name = nameTextField.text ?? ""
@@ -44,7 +41,14 @@ class AddViewController: UIViewController {
         
         if let deadline = dateFormatter.date(from: date) {
             if name != "" && type != "" && point != ""{
-                taskArray.append(TaskModel(name:  name , type: type, deadline: deadline, point: Int(point) ?? 0))
+                let newTaskItem = TaskItem(context: context)
+                newTaskItem.deadline = deadline
+                newTaskItem.name = name
+                newTaskItem.point = Int16(point) ?? 0
+                newTaskItem.type = type
+                
+                self.taskArray.append(newTaskItem)
+                self.saveTaskItems()
             }else {
                 self.present(alertController, animated: true, completion: nil)
             }
@@ -56,12 +60,12 @@ class AddViewController: UIViewController {
     @IBAction func listTasksButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "goToList", sender: self)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToList" {
-            if let destinationVC = segue.destination as? ListViewController {
-                destinationVC.taskArray = self.taskArray
-            }
+
+    func saveTaskItems() {
+        do {
+            try context.save()
+        } catch  {
+            print("Error decoding item array, \(error)")
         }
     }
 }
