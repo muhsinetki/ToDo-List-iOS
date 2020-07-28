@@ -8,20 +8,37 @@
 
 import UIKit
 import CoreData
+class TodoListCell: UITableViewCell {
+    @IBOutlet weak var cellNameLabel: UILabel!
+    @IBOutlet weak var cellTypeLabel: UILabel!
+    @IBOutlet weak var cellDeadlineLabel: UILabel!
+    @IBOutlet weak var cellScoreLabel: UILabel!
+    @IBOutlet weak var cellDeleteButton: UIButton!
+}
 
 class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sortByPointButton: UIButton!
     @IBOutlet weak var sortByDeadlineButton: UIButton!
+
     var taskArray =  [TaskItem]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.layer.borderColor = #colorLiteral(red: 0.3807474971, green: 0.7858162522, blue: 0.8063432574, alpha: 1)
         title = "ToDo List"
         loadTaskItems()
         tableView.dataSource = self
+    }
+    
+    @IBAction func cellDeleteButtonPressed(_ sender: UIButton) {
+        let index = Int(sender.currentTitle!)!
+        self.context.delete(self.taskArray[index])
+        self.taskArray.remove(at: index)
+        self.saveTaskItems()
+        self.tableView.reloadData()
     }
     
     @IBAction func sortByPointButtonPressed(_ sender: UIButton) {
@@ -32,20 +49,6 @@ class ListViewController: UIViewController {
     @IBAction func sortByDeadlineButtonPressed(_ sender: UIButton) {
         taskArray=taskArray.sorted(by: { $0.deadline!.compare($1.deadline!) == .orderedAscending })
         tableView.reloadData()
-    }
-    
-    func deleteTaskItem (taskItem: TaskItem){
-        var index = 0
-        for i in 0..<taskArray.count {
-            if taskArray[i] == taskItem {
-                index = i
-                return
-            }
-        }
-        self.context.delete(self.taskArray[index])
-        self.taskArray.remove(at: index)
-        self.saveTaskItems()
-        self.tableView.reloadData()
     }
     
     func saveTaskItems() {
@@ -72,10 +75,20 @@ extension ListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath)
-        cell.textLabel?.numberOfLines = 0
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! TodoListCell
         let taskItem = taskArray[indexPath.row]
-        cell.textLabel?.text = "\(indexPath.row+1). Name:\(taskItem.name!)\nDeadline:\(taskItem.deadline!)\nPoint:\(taskItem.point)"
+        if let name = taskItem.name , let type = taskItem.type , let dead = taskItem.deadline {
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MMM-dd HH:mm"
+            let deadline = formatter.string(from: dead)
+
+            cell.cellNameLabel.text = name
+            cell.cellTypeLabel.text = type
+            cell.cellDeadlineLabel.text = deadline
+            cell.cellScoreLabel.text = "\(taskItem.point)"
+            cell.cellDeleteButton.setTitle("\(indexPath.row)", for: .normal)
+        }
         return cell
     }
 }
