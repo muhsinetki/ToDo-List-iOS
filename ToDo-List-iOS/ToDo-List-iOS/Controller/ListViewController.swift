@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class TodoListCell: UITableViewCell {
+    @IBOutlet weak var todoListCellView: UIView!
     @IBOutlet weak var cellNameLabel: UILabel!
     @IBOutlet weak var cellTypeLabel: UILabel!
     @IBOutlet weak var cellDeadlineLabel: UILabel!
@@ -87,6 +88,10 @@ extension ListViewController: UITableViewDataSource {
             cell.cellDeadlineLabel.text = deadline
             cell.cellScoreLabel.text = "\(taskItem.point)"
             cell.cellDeleteButton.setTitle("\(indexPath.row)", for: .normal)
+            cell.todoListCellView.layer.shadowColor = UIColor.black.cgColor
+            cell.todoListCellView.layer.shadowOpacity = 0.2
+            cell.todoListCellView.layer.shadowOffset = .zero
+            cell.todoListCellView.layer.shadowRadius = 5
         }
         return cell
     }

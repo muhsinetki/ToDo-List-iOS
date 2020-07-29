@@ -260,7 +260,7 @@
                                 <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qo4-Cf-Dz5">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qo4-Cf-Dz5">
                                 <rect key="frame" x="20" y="180" width="335" height="447"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -355,6 +355,7 @@
                                             <outlet property="cellNameLabel" destination="mzP-aT-IxC" id="4hC-Wb-MSQ"/>
                                             <outlet property="cellScoreLabel" destination="wpn-Dp-lrR" id="6mf-gB-4K8"/>
                                             <outlet property="cellTypeLabel" destination="Fgx-Fu-pW2" id="B5S-80-235"/>
+                                            <outlet property="todoListCellView" destination="aUN-cG-k8T" id="Q4k-3W-K0k"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
