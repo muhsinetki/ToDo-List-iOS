@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+
 class TodoListCell: UITableViewCell {
     @IBOutlet weak var cellNameLabel: UILabel!
     @IBOutlet weak var cellTypeLabel: UILabel!
@@ -19,9 +20,8 @@ class TodoListCell: UITableViewCell {
 class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var sortByPointButton: UIButton!
+    @IBOutlet weak var sortByScoreButton: UIButton!
     @IBOutlet weak var sortByDeadlineButton: UIButton!
-
     var taskArray =  [TaskItem]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -41,7 +41,7 @@ class ListViewController: UIViewController {
         self.tableView.reloadData()
     }
     
-    @IBAction func sortByPointButtonPressed(_ sender: UIButton) {
+    @IBAction func sortByScoreButtonPressed(_ sender: UIButton) {
         taskArray=taskArray.sorted(by: { $0.point > $1.point })
         tableView.reloadData()
     }
@@ -78,7 +78,6 @@ extension ListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! TodoListCell
         let taskItem = taskArray[indexPath.row]
         if let name = taskItem.name , let type = taskItem.type , let dead = taskItem.deadline {
-            
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MMM-dd HH:mm"
             let deadline = formatter.string(from: dead)

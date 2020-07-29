@@ -18,7 +18,6 @@ class AddViewController: UIViewController {
     @IBOutlet weak var addTaskButton: UIButton!
     @IBOutlet weak var listTasksButton: UIButton!
     @IBOutlet weak var taskView: UIView!
-    
     var taskArray = [TaskItem]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
