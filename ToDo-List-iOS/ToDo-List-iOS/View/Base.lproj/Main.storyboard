@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BH1-rh-ccz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BH1-rh-ccz">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -260,111 +260,123 @@
                                 <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qo4-Cf-Dz5">
-                                <rect key="frame" x="20" y="180" width="335" height="447"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" rowHeight="123" id="ygt-NS-8KR" customClass="TodoListCell" customModule="ToDo_List_iOS">
-                                        <rect key="frame" x="0.0" y="28" width="335" height="123"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ygt-NS-8KR" id="al2-Yv-Mfv">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="123"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUN-cG-k8T" customClass="TodoListCell" customModule="ToDo_List_iOS" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="6" width="295" height="111"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULj-ZA-5gY" userLabel="TView">
+                                <rect key="frame" x="20" y="180.5" width="335" height="446.5"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qo4-Cf-Dz5">
+                                        <rect key="frame" x="0.0" y="24" width="335" height="422.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" rowHeight="123" id="ygt-NS-8KR" customClass="TodoListCell" customModule="ToDo_List_iOS">
+                                                <rect key="frame" x="0.0" y="28" width="335" height="123"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ygt-NS-8KR" id="al2-Yv-Mfv">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="123"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make shopping list" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzP-aT-IxC">
-                                                            <rect key="frame" x="20" y="12" width="110" height="35"/>
-                                                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
-                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organization" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgx-Fu-pW2">
-                                                            <rect key="frame" x="20" y="38" width="73.5" height="35"/>
-                                                            <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="13"/>
-                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xi-zz-2TP">
-                                                            <rect key="frame" x="20" y="64" width="32" height="35"/>
-                                                            <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="13"/>
-                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="wpn-Dp-lrR">
-                                                            <rect key="frame" x="267" y="12.5" width="8" height="35"/>
-                                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
-                                                            <color key="textColor" name="borderColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqb-Th-hQ2">
-                                                            <rect key="frame" x="246" y="56" width="29" height="43"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUN-cG-k8T" customClass="TodoListCell" customModule="ToDo_List_iOS" customModuleProvider="target">
+                                                            <rect key="frame" x="20" y="6" width="295" height="111"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make shopping list" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzP-aT-IxC">
+                                                                    <rect key="frame" x="20" y="12" width="110" height="35"/>
+                                                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organization" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgx-Fu-pW2">
+                                                                    <rect key="frame" x="20" y="38" width="73.5" height="35"/>
+                                                                    <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="13"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xi-zz-2TP">
+                                                                    <rect key="frame" x="20" y="64" width="32" height="35"/>
+                                                                    <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="13"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="wpn-Dp-lrR">
+                                                                    <rect key="frame" x="267" y="12.5" width="8" height="35"/>
+                                                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
+                                                                    <color key="textColor" name="borderColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqb-Th-hQ2">
+                                                                    <rect key="frame" x="246" y="56" width="29" height="43"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="29" id="7po-XP-5EV"/>
+                                                                        <constraint firstAttribute="width" constant="29" id="c9x-kT-SZc"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button" image="delete"/>
+                                                                    <connections>
+                                                                        <action selector="cellDeleteButtonPressed:" destination="RDb-3o-kMp" eventType="touchUpInside" id="keS-jd-LS3"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="29" id="7po-XP-5EV"/>
-                                                                <constraint firstAttribute="width" constant="29" id="c9x-kT-SZc"/>
+                                                                <constraint firstAttribute="bottom" secondItem="0xi-zz-2TP" secondAttribute="bottom" constant="12" id="0d0-QL-Vua"/>
+                                                                <constraint firstAttribute="width" constant="295" id="4Gs-4J-lIi"/>
+                                                                <constraint firstItem="wpn-Dp-lrR" firstAttribute="top" secondItem="aUN-cG-k8T" secondAttribute="top" constant="12.5" id="6AD-zI-wgS"/>
+                                                                <constraint firstAttribute="bottom" secondItem="wpn-Dp-lrR" secondAttribute="bottom" constant="63.5" id="6XD-5R-TmV"/>
+                                                                <constraint firstAttribute="height" constant="97" id="7LL-vq-xNf"/>
+                                                                <constraint firstItem="0xi-zz-2TP" firstAttribute="top" secondItem="aUN-cG-k8T" secondAttribute="top" constant="64" id="9OY-zF-Mkv"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mzP-aT-IxC" secondAttribute="trailing" symbolic="YES" id="BNk-WL-nCq"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Qqb-Th-hQ2" secondAttribute="bottom" constant="12" id="FNA-nP-MJf"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Fgx-Fu-pW2" secondAttribute="trailing" symbolic="YES" id="Hva-Pz-5Cy"/>
+                                                                <constraint firstItem="mzP-aT-IxC" firstAttribute="top" secondItem="aUN-cG-k8T" secondAttribute="top" constant="12" id="JBe-db-8Cb"/>
+                                                                <constraint firstItem="Fgx-Fu-pW2" firstAttribute="leading" secondItem="aUN-cG-k8T" secondAttribute="leading" constant="20" id="Mhh-t5-IOi"/>
+                                                                <constraint firstItem="0xi-zz-2TP" firstAttribute="leading" secondItem="aUN-cG-k8T" secondAttribute="leading" constant="20" id="PrD-ct-QFj"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Qqb-Th-hQ2" secondAttribute="trailing" constant="20" id="UUk-xn-bBN"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Fgx-Fu-pW2" secondAttribute="bottom" constant="38" id="ZVy-yO-If6"/>
+                                                                <constraint firstItem="Fgx-Fu-pW2" firstAttribute="top" secondItem="aUN-cG-k8T" secondAttribute="top" constant="38" id="aHM-rA-blE"/>
+                                                                <constraint firstItem="Qqb-Th-hQ2" firstAttribute="top" secondItem="aUN-cG-k8T" secondAttribute="top" constant="56" id="bzp-IU-BBW"/>
+                                                                <constraint firstItem="Qqb-Th-hQ2" firstAttribute="leading" secondItem="aUN-cG-k8T" secondAttribute="leading" constant="246" id="fha-1E-OHV"/>
+                                                                <constraint firstItem="wpn-Dp-lrR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mzP-aT-IxC" secondAttribute="trailing" constant="8" symbolic="YES" id="mdS-q0-nbk"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0xi-zz-2TP" secondAttribute="trailing" constant="20" symbolic="YES" id="oGQ-zv-cpN"/>
+                                                                <constraint firstAttribute="trailing" secondItem="wpn-Dp-lrR" secondAttribute="trailing" constant="20" id="sNX-xO-l5w"/>
+                                                                <constraint firstItem="mzP-aT-IxC" firstAttribute="leading" secondItem="aUN-cG-k8T" secondAttribute="leading" constant="20" id="u2i-aW-HCY"/>
+                                                                <constraint firstAttribute="bottom" secondItem="mzP-aT-IxC" secondAttribute="bottom" constant="64" id="yUD-zy-0vY"/>
                                                             </constraints>
-                                                            <state key="normal" title="Button" image="delete"/>
-                                                            <connections>
-                                                                <action selector="cellDeleteButtonPressed:" destination="RDb-3o-kMp" eventType="touchUpInside" id="keS-jd-LS3"/>
-                                                            </connections>
-                                                        </button>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="20"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="0xi-zz-2TP" secondAttribute="bottom" constant="12" id="0d0-QL-Vua"/>
-                                                        <constraint firstAttribute="width" constant="295" id="4Gs-4J-lIi"/>
-                                                        <constraint firstItem="wpn-Dp-lrR" firstAttribute="top" secondItem="aUN-cG-k8T" secondAttribute="top" constant="12.5" id="6AD-zI-wgS"/>
-                                                        <constraint firstAttribute="bottom" secondItem="wpn-Dp-lrR" secondAttribute="bottom" constant="63.5" id="6XD-5R-TmV"/>
-                                                        <constraint firstAttribute="height" constant="97" id="7LL-vq-xNf"/>
-                                                        <constraint firstItem="0xi-zz-2TP" firstAttribute="top" secondItem="aUN-cG-k8T" secondAttribute="top" constant="64" id="9OY-zF-Mkv"/>
-                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mzP-aT-IxC" secondAttribute="trailing" symbolic="YES" id="BNk-WL-nCq"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Qqb-Th-hQ2" secondAttribute="bottom" constant="12" id="FNA-nP-MJf"/>
-                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Fgx-Fu-pW2" secondAttribute="trailing" symbolic="YES" id="Hva-Pz-5Cy"/>
-                                                        <constraint firstItem="mzP-aT-IxC" firstAttribute="top" secondItem="aUN-cG-k8T" secondAttribute="top" constant="12" id="JBe-db-8Cb"/>
-                                                        <constraint firstItem="Fgx-Fu-pW2" firstAttribute="leading" secondItem="aUN-cG-k8T" secondAttribute="leading" constant="20" id="Mhh-t5-IOi"/>
-                                                        <constraint firstItem="0xi-zz-2TP" firstAttribute="leading" secondItem="aUN-cG-k8T" secondAttribute="leading" constant="20" id="PrD-ct-QFj"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Qqb-Th-hQ2" secondAttribute="trailing" constant="20" id="UUk-xn-bBN"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Fgx-Fu-pW2" secondAttribute="bottom" constant="38" id="ZVy-yO-If6"/>
-                                                        <constraint firstItem="Fgx-Fu-pW2" firstAttribute="top" secondItem="aUN-cG-k8T" secondAttribute="top" constant="38" id="aHM-rA-blE"/>
-                                                        <constraint firstItem="Qqb-Th-hQ2" firstAttribute="top" secondItem="aUN-cG-k8T" secondAttribute="top" constant="56" id="bzp-IU-BBW"/>
-                                                        <constraint firstItem="Qqb-Th-hQ2" firstAttribute="leading" secondItem="aUN-cG-k8T" secondAttribute="leading" constant="246" id="fha-1E-OHV"/>
-                                                        <constraint firstItem="wpn-Dp-lrR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mzP-aT-IxC" secondAttribute="trailing" constant="8" symbolic="YES" id="mdS-q0-nbk"/>
-                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0xi-zz-2TP" secondAttribute="trailing" constant="20" symbolic="YES" id="oGQ-zv-cpN"/>
-                                                        <constraint firstAttribute="trailing" secondItem="wpn-Dp-lrR" secondAttribute="trailing" constant="20" id="sNX-xO-l5w"/>
-                                                        <constraint firstItem="mzP-aT-IxC" firstAttribute="leading" secondItem="aUN-cG-k8T" secondAttribute="leading" constant="20" id="u2i-aW-HCY"/>
-                                                        <constraint firstAttribute="bottom" secondItem="mzP-aT-IxC" secondAttribute="bottom" constant="64" id="yUD-zy-0vY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="aUN-cG-k8T" secondAttribute="trailing" constant="20" id="5Ap-xM-wZs"/>
+                                                        <constraint firstAttribute="bottom" secondItem="aUN-cG-k8T" secondAttribute="bottom" constant="6" id="GcD-DX-aKK"/>
+                                                        <constraint firstItem="aUN-cG-k8T" firstAttribute="top" secondItem="al2-Yv-Mfv" secondAttribute="top" constant="6" id="qfy-a7-Xzo"/>
+                                                        <constraint firstItem="aUN-cG-k8T" firstAttribute="leading" secondItem="al2-Yv-Mfv" secondAttribute="leading" constant="20" id="xwN-mj-qJJ"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="20"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="aUN-cG-k8T" secondAttribute="trailing" constant="20" id="5Ap-xM-wZs"/>
-                                                <constraint firstAttribute="bottom" secondItem="aUN-cG-k8T" secondAttribute="bottom" constant="6" id="GcD-DX-aKK"/>
-                                                <constraint firstItem="aUN-cG-k8T" firstAttribute="top" secondItem="al2-Yv-Mfv" secondAttribute="top" constant="6" id="qfy-a7-Xzo"/>
-                                                <constraint firstItem="aUN-cG-k8T" firstAttribute="leading" secondItem="al2-Yv-Mfv" secondAttribute="leading" constant="20" id="xwN-mj-qJJ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="cellDeadlineLabel" destination="0xi-zz-2TP" id="X4f-rs-amY"/>
-                                            <outlet property="cellDeleteButton" destination="Qqb-Th-hQ2" id="boq-EU-vYX"/>
-                                            <outlet property="cellNameLabel" destination="mzP-aT-IxC" id="4hC-Wb-MSQ"/>
-                                            <outlet property="cellScoreLabel" destination="wpn-Dp-lrR" id="6mf-gB-4K8"/>
-                                            <outlet property="cellTypeLabel" destination="Fgx-Fu-pW2" id="B5S-80-235"/>
-                                            <outlet property="todoListCellView" destination="aUN-cG-k8T" id="Q4k-3W-K0k"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="cellDeadlineLabel" destination="0xi-zz-2TP" id="X4f-rs-amY"/>
+                                                    <outlet property="cellDeleteButton" destination="Qqb-Th-hQ2" id="boq-EU-vYX"/>
+                                                    <outlet property="cellNameLabel" destination="mzP-aT-IxC" id="4hC-Wb-MSQ"/>
+                                                    <outlet property="cellScoreLabel" destination="wpn-Dp-lrR" id="6mf-gB-4K8"/>
+                                                    <outlet property="cellTypeLabel" destination="Fgx-Fu-pW2" id="B5S-80-235"/>
+                                                    <outlet property="todoListCellView" destination="aUN-cG-k8T" id="Q4k-3W-K0k"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="qo4-Cf-Dz5" firstAttribute="leading" secondItem="ULj-ZA-5gY" secondAttribute="leading" id="5Nm-LO-yYg"/>
+                                    <constraint firstAttribute="trailing" secondItem="qo4-Cf-Dz5" secondAttribute="trailing" id="8AI-XJ-l2E"/>
+                                    <constraint firstAttribute="bottom" secondItem="qo4-Cf-Dz5" secondAttribute="bottom" id="J0l-as-ymH"/>
+                                    <constraint firstItem="qo4-Cf-Dz5" firstAttribute="top" secondItem="ULj-ZA-5gY" secondAttribute="top" constant="24" id="gP7-s6-VOv"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                         <integer key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                            </tableView>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Or5-Qj-M4d" userLabel="Sort by Score View">
                                 <rect key="frame" x="20" y="138.5" width="125" height="30"/>
                                 <subviews>
@@ -426,17 +438,17 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="qo4-Cf-Dz5" firstAttribute="top" secondItem="gjy-AA-JSu" secondAttribute="top" constant="136" id="RzL-ak-nBr"/>
-                            <constraint firstItem="gjy-AA-JSu" firstAttribute="trailing" secondItem="qo4-Cf-Dz5" secondAttribute="trailing" constant="20" id="Txy-kC-voC"/>
                             <constraint firstItem="gjy-AA-JSu" firstAttribute="trailing" secondItem="Or5-Qj-M4d" secondAttribute="trailing" constant="230" id="Uv5-5m-AoV"/>
                             <constraint firstItem="wSs-Nb-KJp" firstAttribute="top" secondItem="gjy-AA-JSu" secondAttribute="top" constant="94.5" id="Z3E-XJ-5gA"/>
                             <constraint firstItem="wSs-Nb-KJp" firstAttribute="leading" secondItem="gjy-AA-JSu" secondAttribute="leading" constant="155" id="aup-gT-ars"/>
-                            <constraint firstAttribute="bottom" secondItem="qo4-Cf-Dz5" secondAttribute="bottom" constant="40" id="c1l-lH-f8g"/>
                             <constraint firstItem="Or5-Qj-M4d" firstAttribute="leading" secondItem="GIH-0H-bsN" secondAttribute="leading" constant="20" id="coY-8D-WaM"/>
+                            <constraint firstItem="ULj-ZA-5gY" firstAttribute="leading" secondItem="gjy-AA-JSu" secondAttribute="leading" constant="20" id="e0Z-jv-h6z"/>
+                            <constraint firstItem="ULj-ZA-5gY" firstAttribute="top" secondItem="gjy-AA-JSu" secondAttribute="top" constant="136.5" id="eK8-CQ-LlR"/>
                             <constraint firstAttribute="trailing" secondItem="wSs-Nb-KJp" secondAttribute="trailing" constant="95" id="h7E-T8-EYv"/>
-                            <constraint firstItem="qo4-Cf-Dz5" firstAttribute="leading" secondItem="gjy-AA-JSu" secondAttribute="leading" constant="20" id="hsO-Ov-UWW"/>
                             <constraint firstItem="gjy-AA-JSu" firstAttribute="trailing" secondItem="UbV-Ac-1b2" secondAttribute="trailing" constant="249" id="ilg-fA-fg6"/>
                             <constraint firstItem="UbV-Ac-1b2" firstAttribute="leading" secondItem="gjy-AA-JSu" secondAttribute="leading" constant="20" id="jw6-aU-eIJ"/>
+                            <constraint firstItem="gjy-AA-JSu" firstAttribute="trailing" secondItem="ULj-ZA-5gY" secondAttribute="trailing" constant="20" id="miP-6I-Ie1"/>
+                            <constraint firstItem="gjy-AA-JSu" firstAttribute="bottom" secondItem="ULj-ZA-5gY" secondAttribute="bottom" constant="40" id="wXn-lE-tkv"/>
                             <constraint firstItem="Or5-Qj-M4d" firstAttribute="top" secondItem="gjy-AA-JSu" secondAttribute="top" constant="94.5" id="wqk-RX-h4C"/>
                             <constraint firstItem="UbV-Ac-1b2" firstAttribute="top" secondItem="gjy-AA-JSu" secondAttribute="top" constant="40" id="xOl-3C-acS"/>
                         </constraints>
@@ -447,6 +459,7 @@
                         <outlet property="sortByDeadlineButton" destination="mdg-to-seG" id="XhS-iU-8dj"/>
                         <outlet property="sortByScoreButton" destination="Lnr-vu-SqW" id="4uW-1w-bj1"/>
                         <outlet property="tableView" destination="qo4-Cf-Dz5" id="xaX-Iv-MW9"/>
+                        <outlet property="viewOfTableView" destination="ULj-ZA-5gY" id="hzi-C4-gBL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F17-rs-foP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

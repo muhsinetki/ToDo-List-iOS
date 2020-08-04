@@ -20,6 +20,7 @@ class TodoListCell: UITableViewCell {
 
 class ListViewController: UIViewController {
     
+    @IBOutlet weak var viewOfTableView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sortByScoreButton: UIButton!
     @IBOutlet weak var sortByDeadlineButton: UIButton!
@@ -28,7 +29,7 @@ class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.layer.borderColor = #colorLiteral(red: 0.3807474971, green: 0.7858162522, blue: 0.8063432574, alpha: 1)
+        viewOfTableView.layer.borderColor = #colorLiteral(red: 0.3807474971, green: 0.7858162522, blue: 0.8063432574, alpha: 1)
         title = "ToDo List"
         loadTaskItems()
         tableView.dataSource = self
