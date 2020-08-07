@@ -9,14 +9,7 @@
 import UIKit
 import CoreData
 
-class TodoListCell: UITableViewCell {
-    @IBOutlet weak var todoListCellView: UIView!
-    @IBOutlet weak var cellNameLabel: UILabel!
-    @IBOutlet weak var cellTypeLabel: UILabel!
-    @IBOutlet weak var cellDeadlineLabel: UILabel!
-    @IBOutlet weak var cellScoreLabel: UILabel!
-    @IBOutlet weak var cellDeleteButton: UIButton!
-}
+
 
 class ListViewController: UIViewController {
     
@@ -29,7 +22,8 @@ class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewOfTableView.layer.borderColor = #colorLiteral(red: 0.3807474971, green: 0.7858162522, blue: 0.8063432574, alpha: 1)
+        tableView.layer.borderColor = #colorLiteral(red: 0.3807474971, green: 0.7858162522, blue: 0.8063432574, alpha: 1)
+        self.tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
         title = "ToDo List"
         loadTaskItems()
         tableView.dataSource = self
@@ -77,22 +71,12 @@ extension ListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! TodoListCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! TodoListCell
         let taskItem = taskArray[indexPath.row]
         if let name = taskItem.name , let type = taskItem.type , let dead = taskItem.deadline {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MMM-dd HH:mm"
-            let deadline = formatter.string(from: dead)
+            let cellManager = TodoListCell()
+            cell = cellManager.setTask(cell, name: name, type: type, deadline: dead, score: taskItem.point, index: indexPath.row)
 
-            cell.cellNameLabel.text = name
-            cell.cellTypeLabel.text = type
-            cell.cellDeadlineLabel.text = deadline
-            cell.cellScoreLabel.text = "\(taskItem.point)"
-            cell.cellDeleteButton.setTitle("\(indexPath.row)", for: .normal)
-            cell.todoListCellView.layer.shadowColor = UIColor.black.cgColor
-            cell.todoListCellView.layer.shadowOpacity = 0.2
-            cell.todoListCellView.layer.shadowOffset = .zero
-            cell.todoListCellView.layer.shadowRadius = 5
         }
         return cell
     }
