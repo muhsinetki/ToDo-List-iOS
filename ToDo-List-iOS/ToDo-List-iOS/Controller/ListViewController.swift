@@ -9,11 +9,8 @@
 import UIKit
 import CoreData
 
-
-
 class ListViewController: UIViewController {
     
-    @IBOutlet weak var viewOfTableView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sortByScoreButton: UIButton!
     @IBOutlet weak var sortByDeadlineButton: UIButton!
@@ -27,14 +24,6 @@ class ListViewController: UIViewController {
         title = "ToDo List"
         loadTaskItems()
         tableView.dataSource = self
-    }
-    
-    @IBAction func cellDeleteButtonPressed(_ sender: UIButton) {
-        let index = Int(sender.currentTitle!)!
-        self.context.delete(self.taskArray[index])
-        self.taskArray.remove(at: index)
-        self.saveTaskItems()
-        self.tableView.reloadData()
     }
     
     @IBAction func sortByScoreButtonPressed(_ sender: UIButton) {
@@ -64,7 +53,7 @@ class ListViewController: UIViewController {
         }
     }
 }
-
+//MARK: - UITableViewDataSource
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
@@ -74,10 +63,20 @@ extension ListViewController: UITableViewDataSource {
         var cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! TodoListCell
         let taskItem = taskArray[indexPath.row]
         if let name = taskItem.name , let type = taskItem.type , let dead = taskItem.deadline {
-            let cellManager = TodoListCell()
-            cell = cellManager.setTask(cell, name: name, type: type, deadline: dead, score: taskItem.point, index: indexPath.row)
-
+            cell = cell.setTask(task: taskItem,name: name, type: type, deadline: dead, score: taskItem.point, index: indexPath.row)
+            cell.delegate=self
         }
         return cell
+    }
+}
+//MARK: - TodoListCellDelegate
+extension ListViewController: ToDoListCellDelegate {
+    func todoListCellDidDeleteButtonPressed(cell: TodoListCell) {
+        if let index = self.taskArray.firstIndex(where: {$0 == cell.task}){
+            self.context.delete(self.taskArray[index])
+            self.taskArray.remove(at: index)
+            self.saveTaskItems()
+            self.tableView.reloadData()
+        }
     }
 }

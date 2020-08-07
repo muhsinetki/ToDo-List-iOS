@@ -24,16 +24,10 @@ class AddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         taskView.layer.borderColor = #colorLiteral(red: 0.3807474971, green: 0.7858162522, blue: 0.8063432574, alpha: 1)
-        
         nameTextField.layer.shadowColor = UIColor.black.cgColor
         typeTextField.layer.shadowColor = UIColor.black.cgColor
         deadlineTextField.layer.shadowColor = UIColor.black.cgColor
         pointTextField.layer.shadowColor = UIColor.black.cgColor
-        nameTextField.layer.shadowOffset = CGSize(width: 2, height: 2)
-        typeTextField.layer.shadowOffset = CGSize(width: 2, height: 2)
-        deadlineTextField.layer.shadowOffset = CGSize(width: 2, height: 2)
-        pointTextField.layer.shadowOffset = CGSize(width: 2, height: 2)
-
     }
 
     @IBAction func addTaskButtonPressed(_ sender: UIButton) {
@@ -49,7 +43,6 @@ class AddViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
         { action -> Void in
         })
-        
         if let deadline = dateFormatter.date(from: date) {
             if name != "" && type != "" && point != ""{
                 let newTaskItem = TaskItem(context: context)

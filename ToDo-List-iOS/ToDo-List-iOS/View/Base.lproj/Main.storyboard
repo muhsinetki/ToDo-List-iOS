@@ -88,6 +88,9 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                <size key="value" width="2" height="2"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Task Score" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EEj-8q-InQ">
@@ -104,6 +107,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
                                                 <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                <size key="value" width="2" height="2"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -123,6 +129,9 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                <size key="value" width="2" height="2"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="e.g. 2020-07-27 21:35" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xlf-0U-dG5">
@@ -139,6 +148,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
                                                 <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                <size key="value" width="2" height="2"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -386,7 +398,7 @@
                                                             </constraints>
                                                             <state key="normal" title="Button" image="delete"/>
                                                             <connections>
-                                                                <action selector="cellDeleteButtonPressed:" destination="RDb-3o-kMp" eventType="touchUpInside" id="keS-jd-LS3"/>
+                                                                <action selector="cellDeleteButtonPressed:" destination="ygt-NS-8KR" eventType="touchUpInside" id="OrX-an-d78"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -466,7 +478,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="OVr-yG-ryr"/>
                     <connections>
-                        <outlet property="sortByDeadlineButton" destination="mdg-to-seG" id="XhS-iU-8dj"/>
+                        <outlet property="sortByDeadlineButton" destination="mdg-to-seG" id="r3G-UX-WkS"/>
                         <outlet property="sortByScoreButton" destination="Lnr-vu-SqW" id="4uW-1w-bj1"/>
                         <outlet property="tableView" destination="qo4-Cf-Dz5" id="xaX-Iv-MW9"/>
                     </connections>
