@@ -12,19 +12,21 @@ import CoreData
 class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var sortByPointButton: UIButton!
+    @IBOutlet weak var sortByScoreButton: UIButton!
     @IBOutlet weak var sortByDeadlineButton: UIButton!
     var taskArray =  [TaskItem]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.layer.borderColor = #colorLiteral(red: 0.3807474971, green: 0.7858162522, blue: 0.8063432574, alpha: 1)
+        self.tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
         title = "ToDo List"
         loadTaskItems()
         tableView.dataSource = self
     }
     
-    @IBAction func sortByPointButtonPressed(_ sender: UIButton) {
+    @IBAction func sortByScoreButtonPressed(_ sender: UIButton) {
         taskArray=taskArray.sorted(by: { $0.point > $1.point })
         tableView.reloadData()
     }
@@ -32,20 +34,6 @@ class ListViewController: UIViewController {
     @IBAction func sortByDeadlineButtonPressed(_ sender: UIButton) {
         taskArray=taskArray.sorted(by: { $0.deadline!.compare($1.deadline!) == .orderedAscending })
         tableView.reloadData()
-    }
-    
-    func deleteTaskItem (taskItem: TaskItem){
-        var index = 0
-        for i in 0..<taskArray.count {
-            if taskArray[i] == taskItem {
-                index = i
-                return
-            }
-        }
-        self.context.delete(self.taskArray[index])
-        self.taskArray.remove(at: index)
-        self.saveTaskItems()
-        self.tableView.reloadData()
     }
     
     func saveTaskItems() {
@@ -65,17 +53,30 @@ class ListViewController: UIViewController {
         }
     }
 }
-
+//MARK: - UITableViewDataSource
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath)
-        cell.textLabel?.numberOfLines = 0
+        var cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! TodoListCell
         let taskItem = taskArray[indexPath.row]
-        cell.textLabel?.text = "\(indexPath.row+1). Name:\(taskItem.name!)\nDeadline:\(taskItem.deadline!)\nPoint:\(taskItem.point)"
+        if let name = taskItem.name , let type = taskItem.type , let dead = taskItem.deadline {
+            cell = cell.setTask(task: taskItem,name: name, type: type, deadline: dead, score: taskItem.point, index: indexPath.row)
+            cell.delegate=self
+        }
         return cell
+    }
+}
+//MARK: - TodoListCellDelegate
+extension ListViewController: ToDoListCellDelegate {
+    func todoListCellDidDeleteButtonPressed(cell: TodoListCell) {
+        if let index = self.taskArray.firstIndex(where: {$0 == cell.task}){
+            self.context.delete(self.taskArray[index])
+            self.taskArray.remove(at: index)
+            self.saveTaskItems()
+            self.tableView.reloadData()
+        }
     }
 }

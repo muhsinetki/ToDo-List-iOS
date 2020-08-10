@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9300E9FC24CEC6880071DBFF /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9300E9FB24CEC6880071DBFF /* IQKeyboardManagerSwift */; };
 		931496C824C9B0E8009F9186 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 931496C624C9B0E8009F9186 /* DataModel.xcdatamodeld */; };
+		932C706E24DD818F00F38997 /* ToDoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C706D24DD818F00F38997 /* ToDoListCell.swift */; };
 		934B3A1624C762D100724F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934B3A1524C762D100724F90 /* AppDelegate.swift */; };
 		934B3A1824C762D100724F90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934B3A1724C762D100724F90 /* SceneDelegate.swift */; };
 		934B3A1A24C762D100724F90 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934B3A1924C762D100724F90 /* AddViewController.swift */; };
@@ -16,10 +17,16 @@
 		934B3A1F24C762D300724F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 934B3A1E24C762D300724F90 /* Assets.xcassets */; };
 		934B3A2224C762D300724F90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 934B3A2024C762D300724F90 /* LaunchScreen.storyboard */; };
 		9366AC1524C861990096B5A5 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9366AC1424C861990096B5A5 /* ListViewController.swift */; };
+		93EE678724D01D3000A5538D /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93EE678624D01D3000A5538D /* Poppins-SemiBold.ttf */; };
+		93EE678D24D01FEE00A5538D /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93EE678924D01FEE00A5538D /* Poppins-Regular.ttf */; };
+		93EE678E24D01FEE00A5538D /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93EE678A24D01FEE00A5538D /* Poppins-Medium.ttf */; };
+		93EE678F24D01FEE00A5538D /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93EE678B24D01FEE00A5538D /* Poppins-Bold.ttf */; };
+		93EE679024D01FEE00A5538D /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93EE678C24D01FEE00A5538D /* Poppins-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		931496C724C9B0E8009F9186 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		932C706D24DD818F00F38997 /* ToDoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListCell.swift; sourceTree = "<group>"; };
 		934B3A1224C762D100724F90 /* ToDo-List-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ToDo-List-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		934B3A1524C762D100724F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		934B3A1724C762D100724F90 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,6 +36,11 @@
 		934B3A2124C762D300724F90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		934B3A2324C762D300724F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9366AC1424C861990096B5A5 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		93EE678624D01D3000A5538D /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		93EE678924D01FEE00A5538D /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		93EE678A24D01FEE00A5538D /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		93EE678B24D01FEE00A5538D /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		93EE678C24D01FEE00A5538D /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +82,7 @@
 				934B3A1E24C762D300724F90 /* Assets.xcassets */,
 				934B3A2024C762D300724F90 /* LaunchScreen.storyboard */,
 				934B3A2324C762D300724F90 /* Info.plist */,
+				93EE678824D01D7600A5538D /* fonts */,
 			);
 			path = "ToDo-List-iOS";
 			sourceTree = "<group>";
@@ -87,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				934B3A1B24C762D100724F90 /* Main.storyboard */,
+				932C706D24DD818F00F38997 /* ToDoListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -97,6 +111,18 @@
 				931496C624C9B0E8009F9186 /* DataModel.xcdatamodeld */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		93EE678824D01D7600A5538D /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				93EE678B24D01FEE00A5538D /* Poppins-Bold.ttf */,
+				93EE678C24D01FEE00A5538D /* Poppins-Light.ttf */,
+				93EE678A24D01FEE00A5538D /* Poppins-Medium.ttf */,
+				93EE678924D01FEE00A5538D /* Poppins-Regular.ttf */,
+				93EE678624D01D3000A5538D /* Poppins-SemiBold.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,8 +190,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				934B3A2224C762D300724F90 /* LaunchScreen.storyboard in Resources */,
+				93EE678724D01D3000A5538D /* Poppins-SemiBold.ttf in Resources */,
+				93EE678F24D01FEE00A5538D /* Poppins-Bold.ttf in Resources */,
+				93EE679024D01FEE00A5538D /* Poppins-Light.ttf in Resources */,
 				934B3A1F24C762D300724F90 /* Assets.xcassets in Resources */,
+				93EE678E24D01FEE00A5538D /* Poppins-Medium.ttf in Resources */,
 				934B3A1D24C762D100724F90 /* Main.storyboard in Resources */,
+				93EE678D24D01FEE00A5538D /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +212,7 @@
 				931496C824C9B0E8009F9186 /* DataModel.xcdatamodeld in Sources */,
 				9366AC1524C861990096B5A5 /* ListViewController.swift in Sources */,
 				934B3A1824C762D100724F90 /* SceneDelegate.swift in Sources */,
+				932C706E24DD818F00F38997 /* ToDoListCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

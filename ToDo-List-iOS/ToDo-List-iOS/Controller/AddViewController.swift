@@ -17,12 +17,17 @@ class AddViewController: UIViewController {
     @IBOutlet weak var pointTextField: UITextField!
     @IBOutlet weak var addTaskButton: UIButton!
     @IBOutlet weak var listTasksButton: UIButton!
-    
+    @IBOutlet weak var taskView: UIView!
     var taskArray = [TaskItem]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        taskView.layer.borderColor = #colorLiteral(red: 0.3807474971, green: 0.7858162522, blue: 0.8063432574, alpha: 1)
+        nameTextField.layer.shadowColor = UIColor.black.cgColor
+        typeTextField.layer.shadowColor = UIColor.black.cgColor
+        deadlineTextField.layer.shadowColor = UIColor.black.cgColor
+        pointTextField.layer.shadowColor = UIColor.black.cgColor
     }
 
     @IBAction func addTaskButtonPressed(_ sender: UIButton) {
@@ -32,13 +37,12 @@ class AddViewController: UIViewController {
         let point = pointTextField.text ?? ""
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         
         let alertController = UIAlertController(title: title, message: "There was an error adding the task to the list.", preferredStyle:UIAlertController.Style.alert)
         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
         { action -> Void in
         })
-        
         if let deadline = dateFormatter.date(from: date) {
             if name != "" && type != "" && point != ""{
                 let newTaskItem = TaskItem(context: context)
