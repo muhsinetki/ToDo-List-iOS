@@ -8,12 +8,14 @@
 
 import UIKit
 import CoreData
+import FirebaseFirestore
 
 class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sortByScoreButton: UIButton!
     @IBOutlet weak var sortByDeadlineButton: UIButton!
+    let db = Firestore.firestore()
     var taskArray =  [TaskItem]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -22,7 +24,7 @@ class ListViewController: UIViewController {
         tableView.layer.borderColor = #colorLiteral(red: 0.3807474971, green: 0.7858162522, blue: 0.8063432574, alpha: 1)
         self.tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
         title = "ToDo List"
-        loadTaskItems()
+        loadTaskItemsWithCoreData()
         tableView.dataSource = self
     }
     
@@ -36,7 +38,7 @@ class ListViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func saveTaskItems() {
+    func saveTaskItemsForCoreData() {
         do {
             try context.save()
         } catch  {
@@ -44,7 +46,7 @@ class ListViewController: UIViewController {
         }
     }
     
-    func loadTaskItems()  {
+    func loadTaskItemsWithCoreData()  {
         let request: NSFetchRequest<TaskItem> = TaskItem.fetchRequest()
         do {
             taskArray = try context.fetch(request)
@@ -69,14 +71,22 @@ extension ListViewController: UITableViewDataSource {
         return cell
     }
 }
+
 //MARK: - TodoListCellDelegate
 extension ListViewController: ToDoListCellDelegate {
     func todoListCellDidDeleteButtonPressed(cell: TodoListCell) {
         if let index = self.taskArray.firstIndex(where: {$0 == cell.task}){
             self.context.delete(self.taskArray[index])
+            if let id = self.taskArray[index].id{
+                db.collection("tasks").document( id).delete() { err in
+                    if let err = err {
+                        print("Error removing document: \(err)")
+                    }
+                }
+            }
             self.taskArray.remove(at: index)
-            self.saveTaskItems()
-            self.tableView.reloadData()
+            self.saveTaskItemsForCoreData()
+            tableView.reloadData()
         }
     }
 }
