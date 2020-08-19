@@ -12,6 +12,7 @@ import IQKeyboardManagerSwift
 import Firebase
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseAuth
 
 
 @UIApplicationMain

@@ -8,5 +8,6 @@ target 'ToDo-List-iOS' do
   # Pods for ToDo-List-iOS
 	
   pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
 
 end

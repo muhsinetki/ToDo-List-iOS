@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import FirebaseFirestore
+import FirebaseAuth
 
 class ListViewController: UIViewController {
     
@@ -78,9 +79,12 @@ extension ListViewController: ToDoListCellDelegate {
         if let index = self.taskArray.firstIndex(where: {$0 == cell.task}){
             self.context.delete(self.taskArray[index])
             if let id = self.taskArray[index].id{
-                db.collection("tasks").document( id).delete() { err in
-                    if let err = err {
-                        print("Error removing document: \(err)")
+                Auth.auth().signInAnonymously() { (authResult, error) in
+                    guard let user = authResult?.user else { return }
+                    self.db.collection(user.uid).document( id).delete() { err in
+                        if let err = err {
+                            print("Error removing document: \(err)")
+                        }
                     }
                 }
             }
