@@ -8,15 +8,13 @@
 
 import UIKit
 import CoreData
-import FirebaseFirestore
-import FirebaseAuth
 
 class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sortByScoreButton: UIButton!
     @IBOutlet weak var sortByDeadlineButton: UIButton!
-    let db = Firestore.firestore()
+    let db = FireBaseHelper.shared.db
     var taskArray =  [TaskItem]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -79,9 +77,8 @@ extension ListViewController: ToDoListCellDelegate {
         if let index = self.taskArray.firstIndex(where: {$0 == cell.task}){
             self.context.delete(self.taskArray[index])
             if let id = self.taskArray[index].id{
-                Auth.auth().signInAnonymously() { (authResult, error) in
-                    guard let user = authResult?.user else { return }
-                    self.db.collection(user.uid).document( id).delete() { err in
+                if let userName = FireBaseHelper.shared.userName {
+                    self.db.collection(userName).document( id).delete() { err in
                         if let err = err {
                             print("Error removing document: \(err)")
                         }

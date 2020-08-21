@@ -8,9 +8,7 @@
 
 import UIKit
 import CoreData
-import FirebaseFirestore
-import FirebaseAuth
-
+import Firebase
 
 class AddViewController: UIViewController {
     
@@ -22,13 +20,12 @@ class AddViewController: UIViewController {
     @IBOutlet weak var listTasksButton: UIButton!
     @IBOutlet weak var taskView: UIView!
     var taskArray = [TaskItem]()
-    let db = Firestore.firestore()
+    let db = FireBaseHelper.shared.db
     var coreArray = [TaskItem]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("merhaba")
         sync()
         taskView.layer.borderColor = #colorLiteral(red: 0.3807474971, green: 0.7858162522, blue: 0.8063432574, alpha: 1)
         nameTextField.layer.shadowColor = UIColor.black.cgColor
@@ -59,9 +56,8 @@ class AddViewController: UIViewController {
                 newTaskItem.type = type
                 //firestore below
                 var ref: DocumentReference? = nil
-                Auth.auth().signInAnonymously() { (authResult, error) in
-                    guard let user = authResult?.user else { return }
-                    ref = self.db.collection(user.uid).addDocument(data: [
+                if let userName = FireBaseHelper.shared.userName {
+                    ref = self.db.collection(userName).addDocument(data: [
                         "name": name,
                         "type": type,
                         "deadline": deadline as Date,
@@ -105,9 +101,8 @@ class AddViewController: UIViewController {
         } catch  {
             print("Error fetching data from context \(error)")
         }
-        Auth.auth().signInAnonymously() { (authResult, error) in
-            guard let user = authResult?.user else { return }
-            self.db.collection(user.uid).getDocuments() { (querySnapshot, err) in
+        if let userName = FireBaseHelper.shared.userName {
+            self.db.collection(userName).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
