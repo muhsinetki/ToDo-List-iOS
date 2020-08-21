@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import CoreData
-import Firebase
 
 class AddViewController: UIViewController {
     
@@ -19,14 +17,10 @@ class AddViewController: UIViewController {
     @IBOutlet weak var addTaskButton: UIButton!
     @IBOutlet weak var listTasksButton: UIButton!
     @IBOutlet weak var taskView: UIView!
-    var taskArray = [TaskItem]()
-    let db = FireBaseHelper.shared.db
-    var coreArray = [TaskItem]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sync()
+        FireBaseHelper.shared.sync()
         taskView.layer.borderColor = #colorLiteral(red: 0.3807474971, green: 0.7858162522, blue: 0.8063432574, alpha: 1)
         nameTextField.layer.shadowColor = UIColor.black.cgColor
         typeTextField.layer.shadowColor = UIColor.black.cgColor
@@ -49,30 +43,7 @@ class AddViewController: UIViewController {
         })
         if let deadline = dateFormatter.date(from: date) {
             if name != "" && type != "" && point != ""{
-                let newTaskItem = TaskItem(context: context)
-                newTaskItem.deadline = deadline
-                newTaskItem.name = name
-                newTaskItem.point = Int16(point) ?? 0
-                newTaskItem.type = type
-                //firestore below
-                var ref: DocumentReference? = nil
-                if let userName = FireBaseHelper.shared.userName {
-                    ref = self.db.collection(userName).addDocument(data: [
-                        "name": name,
-                        "type": type,
-                        "deadline": deadline as Date,
-                        "score": Int16(point) ?? 0
-                    ]) { err in
-                        if let err = err {
-                            print("Error adding document: \(err)")
-                        } else {
-                            print("Document added with ID: \(ref!.documentID)")
-                            newTaskItem.id = ref!.documentID
-                            self.saveTaskItemsForCoreData()
-                        }
-                    }
-                }
-                //Firestore above
+                FireBaseHelper.shared.addTasks(name: name, type: type, deadline: deadline, score: Int16(point) ?? 0)
             }else {
                 self.present(alertController, animated: true, completion: nil)
             }
@@ -83,54 +54,5 @@ class AddViewController: UIViewController {
     
     @IBAction func listTasksButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "goToList", sender: self)
-    }
-    
-    func saveTaskItemsForCoreData() {
-        do {
-            try context.save()
-        } catch  {
-            print("Error decoding item array, \(error)")
-        }
-    }
-    
-    func sync()  {
-        self.coreArray=[]
-        let request: NSFetchRequest<TaskItem> = TaskItem.fetchRequest()
-        do {
-            coreArray = try context.fetch(request)
-        } catch  {
-            print("Error fetching data from context \(error)")
-        }
-        if let userName = FireBaseHelper.shared.userName {
-            self.db.collection(userName).getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    if let snapshotDocuments = querySnapshot?.documents{
-                        for document in snapshotDocuments {
-                            if let deadline = document.data()["deadline"] as? Timestamp, let name = document.data()["name"] as? String, let score = document.data()["score"] as? Int16, let type = document.data()["type"] as? String {
-                                let newTaskItem = TaskItem(context: self.context)
-                                newTaskItem.deadline = deadline.dateValue()
-                                newTaskItem.name = name
-                                newTaskItem.point = score
-                                newTaskItem.type = type
-                                newTaskItem.id = document.documentID
-                                if self.coreArray.count != 0 {
-                                    for i in self.coreArray{
-                                        if i.name == name && i.type == type && i.deadline == deadline.dateValue() && i.point == score {
-                                            return
-                                        }else {
-                                            self.saveTaskItemsForCoreData()
-                                        }
-                                    }
-                                }else {
-                                    self.saveTaskItemsForCoreData()
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }
