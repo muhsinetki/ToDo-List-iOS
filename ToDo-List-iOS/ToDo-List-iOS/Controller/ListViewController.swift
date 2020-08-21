@@ -7,23 +7,27 @@
 //
 
 import UIKit
-import CoreData
 
 class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sortByScoreButton: UIButton!
     @IBOutlet weak var sortByDeadlineButton: UIButton!
-    let db = FireBaseHelper.shared.db
     var taskArray =  [TaskItem]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.layer.borderColor = #colorLiteral(red: 0.3807474971, green: 0.7858162522, blue: 0.8063432574, alpha: 1)
         self.tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
         title = "ToDo List"
-        loadTaskItemsWithCoreData()
+        FireBaseHelper.shared.loadTaskItemsWithCoreData(completionHandler: { (result) in
+            switch result {
+            case .success(let data):
+                self.taskArray = data
+            case .failure(let error):
+                self.alert(error: error)
+            }
+        })
         tableView.dataSource = self
     }
     
@@ -37,21 +41,12 @@ class ListViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func saveTaskItemsForCoreData() {
-        do {
-            try context.save()
-        } catch  {
-            print("Error decoding item array, \(error)")
-        }
-    }
-    
-    func loadTaskItemsWithCoreData()  {
-        let request: NSFetchRequest<TaskItem> = TaskItem.fetchRequest()
-        do {
-            taskArray = try context.fetch(request)
-        } catch  {
-            print("Error fetching data from context \(error)")
-        }
+    func alert(error:Error)  {
+        let alertController = UIAlertController(title: title, message: error.localizedDescription, preferredStyle:UIAlertController.Style.alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
+        { action -> Void in
+        })
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 //MARK: - UITableViewDataSource
@@ -75,18 +70,14 @@ extension ListViewController: UITableViewDataSource {
 extension ListViewController: ToDoListCellDelegate {
     func todoListCellDidDeleteButtonPressed(cell: TodoListCell) {
         if let index = self.taskArray.firstIndex(where: {$0 == cell.task}){
-            self.context.delete(self.taskArray[index])
-            if let id = self.taskArray[index].id{
-                if let userName = FireBaseHelper.shared.userName {
-                    self.db.collection(userName).document( id).delete() { err in
-                        if let err = err {
-                            print("Error removing document: \(err)")
-                        }
-                    }
+            FireBaseHelper.shared.deleteTask(index: index) { (result) in
+                switch result {
+                case .success(_):
+                    return
+                case .failure(let error):
+                    self.alert(error: error)
                 }
             }
-            self.taskArray.remove(at: index)
-            self.saveTaskItemsForCoreData()
             tableView.reloadData()
         }
     }
