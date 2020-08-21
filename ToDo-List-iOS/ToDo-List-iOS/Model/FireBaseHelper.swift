@@ -116,19 +116,24 @@ class FireBaseHelper {
         }
     }
     
-    func deleteTask(index:Int , completionHandler: @escaping (Result<String ,Error>) -> Void)  {
-        self.context.delete(self.taskArray[index])
-        if let id = self.taskArray[index].id{
+    func deleteTask(index:Int , array:[TaskItem], completionHandler: @escaping (Result<[TaskItem] ,Error>) -> Void)  {
+        var array = array
+        self.context.delete(array[index])
+        if let id = array[index].id{
             self.db.collection(FireBaseHelper.shared.userName!).document( id).delete() { err in
                 if let err = err {
                     completionHandler(.failure(err))
                 }
             }
         }
-        self.taskArray.remove(at: index)
+        DispatchQueue.main.async {
+            array.remove(at: index)
+            completionHandler(.success(array))
+        }
         self.saveTaskItemsForCoreData { (result) in
             switch result {
             case .success(_):
+                completionHandler(.success(array))
                 return
             case .failure(let error):
                 completionHandler(.failure(error))

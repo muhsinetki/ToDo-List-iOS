@@ -70,15 +70,18 @@ extension ListViewController: UITableViewDataSource {
 extension ListViewController: ToDoListCellDelegate {
     func todoListCellDidDeleteButtonPressed(cell: TodoListCell) {
         if let index = self.taskArray.firstIndex(where: {$0 == cell.task}){
-            FireBaseHelper.shared.deleteTask(index: index) { (result) in
-                switch result {
-                case .success(_):
-                    return
-                case .failure(let error):
-                    self.alert(error: error)
+            DispatchQueue.main.async {
+                FireBaseHelper.shared.deleteTask(index: index , array: self.taskArray) { (result) in
+                    switch result {
+                    case .success(let data):
+                        self.taskArray = data
+                        self.tableView.reloadData()
+                        return
+                    case .failure(let error):
+                        self.alert(error: error)
+                    }
                 }
             }
-            tableView.reloadData()
         }
     }
 }
